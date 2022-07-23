@@ -8,7 +8,7 @@ module Cnc
       end
 
       def self.default
-        @@default ||= Bucket.new
+        @default ||= Bucket.new
       end
 
       def upload_file(params = {}, options = {})

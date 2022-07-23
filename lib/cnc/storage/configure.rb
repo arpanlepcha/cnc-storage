@@ -19,7 +19,7 @@ module Cnc
       end
 
       def self.default
-        @@default ||= Configuration.new
+        @default ||= Configuration.new
       end
     end
   end
