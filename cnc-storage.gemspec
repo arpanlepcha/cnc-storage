@@ -32,4 +32,6 @@ Gem::Specification.new do |spec|
   spec.add_runtime_dependency 'aws-sdk-s3', '~> 1.73.0'
   spec.add_runtime_dependency 'marcel', '~> 1.0.0'
   spec.add_runtime_dependency 'ruby-vips', '~> 2.0.17'
+  spec.add_runtime_dependency 'dry-configurable', '~> 0.15.0'
 end
+

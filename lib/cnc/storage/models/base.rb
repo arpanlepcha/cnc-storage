@@ -23,11 +23,11 @@ module Cnc
 
       def save!
         validate!
+
         UrlGenerators.new(
           file: filename,
           path: path,
           options: @options,
-          bucket: bucket,
           extension: extension
         ).urls
       end
@@ -50,10 +50,6 @@ module Cnc
 
       def path
         raise NotImplementedError
-      end
-
-      def bucket
-        @bucket ||= Bucket.default
       end
 
       def extension

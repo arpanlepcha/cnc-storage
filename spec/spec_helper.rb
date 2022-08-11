@@ -16,9 +16,11 @@ RSpec.configure do |config|
 
   Cnc::Storage.configure do |storage|
     storage.cdn_url = 'https://assets.themonk.me'
+    storage.region = 'us-east-1'
+    storage.endpoint = 'https://s3.dummy-url.com'
   end
 
   config.before do
-    allow_any_instance_of(Cnc::Storage::Bucket).to receive(:upload_file).and_return(true)
+    allow_any_instance_of(Aws::S3::Client).to receive(:put_object).and_return(double)
   end
 end
