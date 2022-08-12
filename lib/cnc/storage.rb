@@ -3,9 +3,9 @@
 require 'aws-sdk-s3'
 require 'vips'
 require 'marcel'
+require 'dry/configurable'
 
 require 'cnc/storage/version'
-require 'cnc/storage/configure'
 
 require 'cnc/storage/models/base'
 require 'cnc/storage/models/file'
@@ -20,13 +20,16 @@ require 'cnc/storage/async/thread'
 
 module Cnc
   module Storage
-    def self.configure
-      if block_given?
-        yield(Configuration.default)
-      else
-        Configuration.default
-      end
-    end
+    extend Dry::Configurable
+
+    setting :access_key_id
+    setting :secret_access_key
+    setting :region
+    setting :bucket
+    setting :endpoint
+    setting :logger, default: defined?(Rails) ? Rails.logger : Logger.new($stdout)
+    setting :cdn_url
+    setting :debugging, default: false
 
     # Saves images by file, i.e the filepath in local file system
     # @param file [String]  Path to the file eg. `/tmp/devops.jpg`
